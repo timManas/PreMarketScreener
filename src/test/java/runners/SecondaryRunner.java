@@ -17,7 +17,7 @@ public class SecondaryRunner {
 
         
 		// This code will print the page source Code		
-       System.out.println("Page title is: " + driver.getTitle());		
+       System.out.println("Page title is: " + driver.getPageSource());		
        
        driver.quit();			
 }	
