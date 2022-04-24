@@ -14,4 +14,19 @@ public class HomePage extends BasePage {
 		getDriver().get("https://marketchameleon.com/Reports/PremarketTrading");
 	}
 
+	public void fetchDataFromMostActive() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void fetchDataFromGainers() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void createCSV() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
