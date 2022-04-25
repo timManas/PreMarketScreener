@@ -51,7 +51,6 @@ public class DriverFactory {
 					// Add the following to avoid detection 
 					ChromeOptions options = new ChromeOptions();
 					options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36");
-					options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"}); 
 					options.addArguments("--disable-extensions");
 					options.addArguments("--profile-directory=Default");
 					options.addArguments("--incognito");
