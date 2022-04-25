@@ -25,7 +25,7 @@ public class HomePageSteps extends DriverFactory {
 
 	@Then("^I fetch all data from Decliners$")
 	public void i_fetch_all_data_from_Decliners() throws Throwable {
-		homePage.fetchDataFromGainers();
+		homePage.fetchDataFromDecliners();
 	}
 
 	@Then("^I put them all into a csv file$")

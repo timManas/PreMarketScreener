@@ -12,6 +12,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
 	public @FindBy(xpath="//*[@id='most_active_tbl']") WebElement mostActiveTable;
+	public @FindBy(xpath="//*[@id='gainers_tbl']") WebElement gainersTable;
+	public @FindBy(xpath="//*[@id='decliners_tbl']") WebElement declinersTable;
+;
+
 
 	public HomePage() throws IOException {
 		super();
@@ -20,7 +24,6 @@ public class HomePage extends BasePage {
 
 	public void goToPreScreenPage() throws InterruptedException {
 		getDriver().get("https://marketchameleon.com/Reports/PremarketTrading");
-		Thread.sleep(5000);
 	}
 
 	public void fetchDataFromMostActive() throws InterruptedException {
@@ -30,8 +33,36 @@ public class HomePage extends BasePage {
 		List<WebElement> listEven = mostActiveTable.findElements(By.className("even"));
 		List<Map<String, String>> listMap = populateMap(listOdd, listEven);
 		
-		System.out.println("Most Active List: " + listMap);
+		System.out.println("Size: " + listMap.size() + " 	Most Active List: " + listMap + "\n");
 	}
+
+
+	public void fetchDataFromGainers() {
+		WaitUntilWebElementIsVisible(gainersTable);
+		
+		List<WebElement> listOdd = gainersTable.findElements(By.className("odd"));
+		List<WebElement> listEven = gainersTable.findElements(By.className("even"));		
+		List<Map<String, String>> listMap = populateMap(listOdd, listEven);
+
+		System.out.println("Size: " + listMap.size() + "	Gainers List: " + listMap + "\n");
+
+	}
+	
+	public void fetchDataFromDecliners() {
+		WaitUntilWebElementIsVisible(declinersTable);
+		
+		List<WebElement> listOdd = declinersTable.findElements(By.className("odd"));
+		List<WebElement> listEven = declinersTable.findElements(By.className("even"));		
+		List<Map<String, String>> listMap = populateMap(listOdd, listEven);
+
+		System.out.println("Size: " + listMap.size() + "	Decliners List: " + listMap + "\n");		
+	}
+
+	public void createCSV() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 
 	private List<Map<String, String>> populateMap(List<WebElement> listOdd, List<WebElement> listEven) {
 		List<Map<String, String>> output = new ArrayList();
@@ -65,14 +96,6 @@ public class HomePage extends BasePage {
 		}		
 	}
 
-	public void fetchDataFromGainers() {
-		// TODO Auto-generated method stub
-		
-	}
 
-	public void createCSV() {
-		// TODO Auto-generated method stub
-		
-	}
 
 }
