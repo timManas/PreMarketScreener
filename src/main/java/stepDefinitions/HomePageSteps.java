@@ -28,9 +28,9 @@ public class HomePageSteps extends DriverFactory {
 		homePage.fetchDataFromDecliners();
 	}
 
-	@Then("^I put them all into a csv file$")
-	public void i_put_them_all_into_a_csv_file() throws Throwable {
-		homePage.createCSV();
+	@Then("^I put them all into a JSON file$")
+	public void i_put_them_all_into_a_json_file() throws Throwable {
+		homePage.createJSON();
 	}
 
 }

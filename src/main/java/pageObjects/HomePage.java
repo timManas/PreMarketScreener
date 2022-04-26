@@ -6,9 +6,13 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import gherkin.deps.com.google.gson.JsonArray;
 
 public class HomePage extends BasePage {
 	public @FindBy(xpath="//*[@id='most_active_tbl']") WebElement mostActiveTable;
@@ -31,7 +35,6 @@ public class HomePage extends BasePage {
 		List<WebElement> listEven = mostActiveTable.findElements(By.className("even"));
 		mostActiveList = populateMap(listOdd, listEven);
 		
-		System.out.println("Size: " + mostActiveList.size() + " 	Most Active List: " + mostActiveList + "\n");
 	}
 
 
@@ -42,8 +45,6 @@ public class HomePage extends BasePage {
 		List<WebElement> listEven = gainersTable.findElements(By.className("even"));		
 		gainersList = populateMap(listOdd, listEven);
 
-		System.out.println("Size: " + gainersList.size() + "	Gainers List: " + gainersList + "\n");
-
 	}
 	
 	public void fetchDataFromDecliners() {
@@ -53,14 +54,7 @@ public class HomePage extends BasePage {
 		List<WebElement> listEven = declinersTable.findElements(By.className("even"));		
 		declinersList = populateMap(listOdd, listEven);
 
-		System.out.println("Size: " + declinersList.size() + "		Decliners List: " + declinersList + "\n");		
 	}
-
-	public void createCSV() {
-		// TODO Auto-generated method stub
-		
-	}
-	
 
 	private List<Map<String, String>> populateMap(List<WebElement> listOdd, List<WebElement> listEven) {
 		List<Map<String, String>> output = new ArrayList();
@@ -92,6 +86,31 @@ public class HomePage extends BasePage {
 			
 			output.add(map);
 		}		
+	}
+	
+	public void createJSON() {
+		JSONArray mostActiveJSON = new JSONArray();
+		for (int i=0; i < mostActiveList.size(); i++) {
+			JSONObject jsonObj = new JSONObject(mostActiveList.get(i));
+			mostActiveJSON.put(jsonObj);
+		}
+		System.out.println("most Active JSON: " + mostActiveJSON + "\n");
+		
+		
+		JSONArray gainersJSON = new JSONArray();
+		for (int i=0; i < gainersList.size(); i++) {
+			JSONObject jsonObj = new JSONObject(gainersList.get(i));
+			gainersJSON.put(jsonObj);
+		}
+		System.out.println("Gainers JSON: " + gainersJSON + "\n");
+		
+		
+		JSONArray declinersJSON = new JSONArray();
+		for (int i=0; i < declinersList.size(); i++) {
+			JSONObject jsonObj = new JSONObject(declinersList.get(i));
+			declinersJSON.put(jsonObj);
+		}
+		System.out.println("Decliners JSON: " + declinersJSON + "\n");
 	}
 
 
