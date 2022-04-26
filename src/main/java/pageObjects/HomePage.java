@@ -14,8 +14,6 @@ public class HomePage extends BasePage {
 	public @FindBy(xpath="//*[@id='most_active_tbl']") WebElement mostActiveTable;
 	public @FindBy(xpath="//*[@id='gainers_tbl']") WebElement gainersTable;
 	public @FindBy(xpath="//*[@id='decliners_tbl']") WebElement declinersTable;
-;
-
 
 	public HomePage() throws IOException {
 		super();
@@ -31,9 +29,9 @@ public class HomePage extends BasePage {
 		
 		List<WebElement> listOdd = mostActiveTable.findElements(By.className("odd"));
 		List<WebElement> listEven = mostActiveTable.findElements(By.className("even"));
-		List<Map<String, String>> listMap = populateMap(listOdd, listEven);
+		mostActiveList = populateMap(listOdd, listEven);
 		
-		System.out.println("Size: " + listMap.size() + " 	Most Active List: " + listMap + "\n");
+		System.out.println("Size: " + mostActiveList.size() + " 	Most Active List: " + mostActiveList + "\n");
 	}
 
 
@@ -42,9 +40,9 @@ public class HomePage extends BasePage {
 		
 		List<WebElement> listOdd = gainersTable.findElements(By.className("odd"));
 		List<WebElement> listEven = gainersTable.findElements(By.className("even"));		
-		List<Map<String, String>> listMap = populateMap(listOdd, listEven);
+		gainersList = populateMap(listOdd, listEven);
 
-		System.out.println("Size: " + listMap.size() + "	Gainers List: " + listMap + "\n");
+		System.out.println("Size: " + gainersList.size() + "	Gainers List: " + gainersList + "\n");
 
 	}
 	
@@ -53,9 +51,9 @@ public class HomePage extends BasePage {
 		
 		List<WebElement> listOdd = declinersTable.findElements(By.className("odd"));
 		List<WebElement> listEven = declinersTable.findElements(By.className("even"));		
-		List<Map<String, String>> listMap = populateMap(listOdd, listEven);
+		declinersList = populateMap(listOdd, listEven);
 
-		System.out.println("Size: " + listMap.size() + "	Decliners List: " + listMap + "\n");		
+		System.out.println("Size: " + declinersList.size() + "		Decliners List: " + declinersList + "\n");		
 	}
 
 	public void createCSV() {

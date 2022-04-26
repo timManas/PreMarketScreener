@@ -2,6 +2,8 @@ package stepDefinitions;
 
 
 import java.io.FileInputStream;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -20,6 +22,9 @@ import utils.Constants;
 public class DriverFactory {
 	public static WebDriver driver;
 	public static HomePage homePage;
+	public List<Map<String, String>> mostActiveList;
+	public List<Map<String, String>> gainersList;
+	public List<Map<String, String>> declinersList;
 
 	public WebDriver getDriver() {
 		try {
