@@ -1,5 +1,6 @@
 package pageObjects;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -88,30 +89,29 @@ public class HomePage extends BasePage {
 		}		
 	}
 	
-	public void createJSON() {
-		JSONArray mostActiveJSON = new JSONArray();
-		for (int i=0; i < mostActiveList.size(); i++) {
-			JSONObject jsonObj = new JSONObject(mostActiveList.get(i));
-			mostActiveJSON.put(jsonObj);
-		}
-		System.out.println("most Active JSON: " + mostActiveJSON + "\n");
+	public void createJSON() throws IOException {
 		
-		
-		JSONArray gainersJSON = new JSONArray();
-		for (int i=0; i < gainersList.size(); i++) {
-			JSONObject jsonObj = new JSONObject(gainersList.get(i));
-			gainersJSON.put(jsonObj);
-		}
-		System.out.println("Gainers JSON: " + gainersJSON + "\n");
-		
-		
-		JSONArray declinersJSON = new JSONArray();
-		for (int i=0; i < declinersList.size(); i++) {
-			JSONObject jsonObj = new JSONObject(declinersList.get(i));
-			declinersJSON.put(jsonObj);
-		}
-		System.out.println("Decliners JSON: " + declinersJSON + "\n");
+		createJSONdocument(mostActiveList);
+		createJSONdocument(gainersList);
+		createJSONdocument(declinersList);
+
 	}
+
+	private void createJSONdocument(List<Map<String, String>> list) throws IOException {
+		JSONArray jsonArray = new JSONArray();
+		for (int i=0; i < list.size(); i++) {
+			JSONObject jsonObj = new JSONObject(list.get(i));
+			jsonArray.put(jsonObj);
+		}
+		System.out.println("JSON: " + jsonArray + "\n");
+		
+		
+		FileWriter fw = new FileWriter(System.getProperty("user.dir")  + "//preMarketData.json");
+		fw.write(jsonArray.toString());
+		fw.close();
+	}
+	
+	
 
 
 
